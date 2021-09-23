@@ -4,7 +4,6 @@ const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
 const port =  process.env.PORT || 5000
 const fs = require('fs-extra')
-const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config()
