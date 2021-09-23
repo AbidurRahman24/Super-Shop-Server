@@ -32,13 +32,23 @@ app.get('/product/:id', (req, res) => {
 })
   // console.log('database connected', collection);
   app.post('/addProduct', (req, res) => {
-    const product = req.body;
+    const file = req.files.file;
+        const name = req.body.name;
+        const wight = req.body.wight;
+        const price = req.body.price;
+        const newImg = file.data;
+        const encImg = newImg.toString('base64');
 
-    collection.insertOne(product)
-    .then(result => {
-      // console.log('inserted count', result.insertedCount);
-      res.send(result.insertedCount > 0)
-    })
+        // const filePath = `${__dirname}/doctors/${file.name}`
+        var image = {
+            contentType: file.mimetype,
+            size: file.size,
+            img: Buffer.from(encImg, 'base64')
+        };
+        doctorCollection.insertOne({ name, wight,price , image })
+            .then(result => {
+                res.send(result.insertedCount > 0);
+            })
 })
  app.delete('/delete/:id', (req,res)=>{
   // console.log(res,params.id);
