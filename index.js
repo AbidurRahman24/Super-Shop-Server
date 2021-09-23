@@ -3,6 +3,8 @@ const app = express()
 const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
 const port =  process.env.PORT || 5000
+const fs = require('fs-extra')
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config()
@@ -48,6 +50,7 @@ app.get('/product/:id', (req, res) => {
         collection.insertOne({ name, wight,price , image })
             .then(result => {
                 res.send(result.insertedCount > 0);
+                console.log(name, wight, price, image);
             })
 })
  app.delete('/delete/:id', (req,res)=>{
