@@ -45,7 +45,7 @@ app.get('/product/:id', (req, res) => {
             size: file.size,
             img: Buffer.from(encImg, 'base64')
         };
-        doctorCollection.insertOne({ name, wight,price , image })
+        collection.insertOne({ name, wight,price , image })
             .then(result => {
                 res.send(result.insertedCount > 0);
             })
